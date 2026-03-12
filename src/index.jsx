@@ -1,16 +1,15 @@
-// src/App.jsx
 import * as React from "react";
 import ReactDOM from "react-dom/client";
-import index from "./index.jsx";
-import App from "./App.jsx";
-
-
+import { AuthProvider } from "./AuthContext";
+import Root from "./Root";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
+  <React.StrictMode>
+    <AuthProvider>
+      <Root />
+    </AuthProvider>
+  </React.StrictMode>
+);
 
 
 
