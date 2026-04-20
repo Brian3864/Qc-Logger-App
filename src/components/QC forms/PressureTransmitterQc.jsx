@@ -1,7 +1,9 @@
 import * as React from "react";
 import {
   Box, Paper, Typography, Grid, TextField, FormControl, InputLabel, Select, MenuItem,
-  RadioGroup, FormControlLabel, Radio, Button, Stack
+  RadioGroup, FormControlLabel, Radio, Button, Stack,
+   Table, TableBody, TableCell, TableContainer, TableHead, TableRow
+
 } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { generateQCReport, makeSections } from "../../utils/qcPdf";
@@ -21,7 +23,7 @@ const YesNo = ({ label, value, onChange, required }) => (
 export default function PressureTransmitterQC({ onBack }) {
   const [f, setF] = React.useState(() => {
     try {
-      const raw = localStorage.getItem("STORAGE_KEYp");
+      const raw = localStorage.getItem(STORAGE_KEYp);
       return raw ? JSON.parse(raw) : {};
     } catch { return {}; }
   });
@@ -29,11 +31,11 @@ export default function PressureTransmitterQC({ onBack }) {
   const up = (k) => (eOrVal) =>
     setF((s) => ({ ...s, [k]: typeof eOrVal === "string" ? eOrVal : eOrVal?.target?.value }));
 
-  const saveLocal = () => localStorage.setItem("STORAGE_KEYp", JSON.stringify(f));
+  const saveLocal = () => localStorage.setItem(STORAGE_KEYp, JSON.stringify(f));
 
     const resetForm = () => {
   setF({});
-  localStorage.removeItem("STORAGE_KEYp");
+  localStorage.removeItem(STORAGE_KEYp);
 };
   const saveAndPdf = async() => { 
     saveLocal(); 
@@ -86,7 +88,49 @@ const sections = makeSections({
 
 
 };
+const defaultPTrows = Array.from({ length: 10 }, () => ({
+  reference: "",
+  actual: "",
+}));
 
+const [ptRows, setPtRows] = React.useState(defaultPTrows);
+
+const updatePTReference = (index, value) => {
+  setPtRows((rows) =>
+    rows.map((r, i) =>
+      i === index ? { ...r, reference: value } : r
+    )
+  );
+};
+
+const updatePTActual = (index, value) => {
+  setPtRows((rows) =>
+    rows.map((r, i) =>
+      i === index ? { ...r, actual: value } : r
+    )
+  );
+};
+
+const ptData = ptRows.map((row) => {
+  const reference =
+    row.reference === "" ? null : Number(row.reference);
+
+  const actual =
+    row.actual === "" ? null : Number(row.actual);
+
+  const deviation =
+    reference === null ||
+    actual === null ||
+    Number.isNaN(reference) ||
+    Number.isNaN(actual)
+      ? ""
+      : (actual - reference).toFixed(2);
+
+  return {
+    ...row,
+    deviation,
+  };
+});
   return (
     <Box sx={{ maxWidth: 900, mx: "auto", p: 2 }}>
       <Stack direction="row" alignItems="center" spacing={2} sx={{ mb: 2 }}>
@@ -209,9 +253,76 @@ const sections = makeSections({
         </Grid>
       </Paper>
 
-      {/* E. Final Details */}
+       {/* E. Pressure Reading */}
       <Paper variant="outlined" sx={{ p: 3, mb: 3 }}>
-        <Typography sx={{ fontWeight: 700, mb: 1 }}>E. Final Details</Typography>
+  <Typography sx={{ fontWeight: 700, mb: 1 }}>
+    E. Pressure Readings
+  </Typography>
+
+  <TableContainer component={Paper} variant="outlined">
+    <Table size="small">
+      <TableHead>
+        <TableRow>
+          <TableCell sx={{ fontWeight: 700 }}>
+            Reference reading (bar)
+          </TableCell>
+          <TableCell sx={{ fontWeight: 700 }}>
+            Sensor reading (bar)
+          </TableCell>
+          <TableCell sx={{ fontWeight: 700 }}>
+            Deviation (bar)
+          </TableCell>
+        </TableRow>
+      </TableHead>
+
+      <TableBody>
+        {ptData.map((row, index) => (
+          <TableRow key={index}>
+            <TableCell>
+              <TextField
+                fullWidth
+                size="small"
+                type="number"
+                value={row.reference}
+                onChange={(e) =>
+                  updatePTReference(
+                    index,
+                    e.target.value === "" ? "" : Number(e.target.value)
+                  )
+                }
+                placeholder="Enter reference"
+              />
+            </TableCell>
+
+            <TableCell>
+              <TextField
+                fullWidth
+                size="small"
+                type="number"
+                value={row.actual}
+                onChange={(e) =>
+                  updatePTActual(
+                    index,
+                    e.target.value === "" ? "" : Number(e.target.value)
+                  )
+                }
+                placeholder="Enter reading"
+              />
+            </TableCell>
+
+            <TableCell>
+              {row.deviation !== "" ? row.deviation : "-"}
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </TableContainer>
+</Paper>
+
+      {/* F. Final Details */}
+      <Paper variant="outlined" sx={{ p: 3, mb: 3 }}>
+        <Typography sx={{ fontWeight: 700, mb: 1 }}>F. Final Details</Typography>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <TextField fullWidth label="1. Transmitter Manufacturer *" value={f.txMfg || ""} onChange={up("txMfg")} required />
