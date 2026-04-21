@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.js": "/Qc-Logger-App/static/js/main.1730da14.js",
-    "static/js/239.d91be44a.chunk.js": "/Qc-Logger-App/static/js/239.d91be44a.chunk.js",
-    "static/js/977.9156b7f1.chunk.js": "/Qc-Logger-App/static/js/977.9156b7f1.chunk.js",
-    "static/js/455.52c22eb4.chunk.js": "/Qc-Logger-App/static/js/455.52c22eb4.chunk.js",
+    "main.js": "/Qc-Logger-App/static/js/main.56a75aa2.js",
+    "static/js/239.2aa2d48c.chunk.js": "/Qc-Logger-App/static/js/239.2aa2d48c.chunk.js",
+    "static/js/977.fd1dcb03.chunk.js": "/Qc-Logger-App/static/js/977.fd1dcb03.chunk.js",
+    "static/js/553.3d59dfeb.chunk.js": "/Qc-Logger-App/static/js/553.3d59dfeb.chunk.js",
     "index.html": "/Qc-Logger-App/index.html",
-    "main.1730da14.js.map": "/Qc-Logger-App/static/js/main.1730da14.js.map",
-    "239.d91be44a.chunk.js.map": "/Qc-Logger-App/static/js/239.d91be44a.chunk.js.map",
-    "977.9156b7f1.chunk.js.map": "/Qc-Logger-App/static/js/977.9156b7f1.chunk.js.map",
-    "455.52c22eb4.chunk.js.map": "/Qc-Logger-App/static/js/455.52c22eb4.chunk.js.map"
+    "main.56a75aa2.js.map": "/Qc-Logger-App/static/js/main.56a75aa2.js.map",
+    "239.2aa2d48c.chunk.js.map": "/Qc-Logger-App/static/js/239.2aa2d48c.chunk.js.map",
+    "977.fd1dcb03.chunk.js.map": "/Qc-Logger-App/static/js/977.fd1dcb03.chunk.js.map",
+    "553.3d59dfeb.chunk.js.map": "/Qc-Logger-App/static/js/553.3d59dfeb.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.1730da14.js"
+    "static/js/main.56a75aa2.js"
   ]
 }
