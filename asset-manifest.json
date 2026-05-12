@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.js": "/Qc-Logger-App/static/js/main.56a75aa2.js",
+    "main.js": "/Qc-Logger-App/static/js/main.2611acb6.js",
     "static/js/239.2aa2d48c.chunk.js": "/Qc-Logger-App/static/js/239.2aa2d48c.chunk.js",
     "static/js/977.fd1dcb03.chunk.js": "/Qc-Logger-App/static/js/977.fd1dcb03.chunk.js",
     "static/js/553.3d59dfeb.chunk.js": "/Qc-Logger-App/static/js/553.3d59dfeb.chunk.js",
     "index.html": "/Qc-Logger-App/index.html",
-    "main.56a75aa2.js.map": "/Qc-Logger-App/static/js/main.56a75aa2.js.map",
+    "main.2611acb6.js.map": "/Qc-Logger-App/static/js/main.2611acb6.js.map",
     "239.2aa2d48c.chunk.js.map": "/Qc-Logger-App/static/js/239.2aa2d48c.chunk.js.map",
     "977.fd1dcb03.chunk.js.map": "/Qc-Logger-App/static/js/977.fd1dcb03.chunk.js.map",
     "553.3d59dfeb.chunk.js.map": "/Qc-Logger-App/static/js/553.3d59dfeb.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.56a75aa2.js"
+    "static/js/main.2611acb6.js"
   ]
 }
